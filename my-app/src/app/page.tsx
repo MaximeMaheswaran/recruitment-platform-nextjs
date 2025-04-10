@@ -1,7 +1,7 @@
-import Image from "next/image";
+import FormCandidate from "@/components/FormCandidate";
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <FormCandidate/>
   );
 }

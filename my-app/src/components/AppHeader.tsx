@@ -1,6 +1,7 @@
 import { PieChartFilled, UserOutlined} from "@ant-design/icons";
 import { Avatar } from "antd";
 import { Header } from "antd/es/layout/layout";
+import Link from "next/link";
 
 export default function AppHeader() {
     return (
@@ -9,12 +10,11 @@ export default function AppHeader() {
             <div><PieChartFilled className="text-3xl color"/></div>
             <div>Analytics</div>
         </div>
-        
-        
-        
         <div className="flex items-center gap-2">
-            <Avatar size={40} src="/profile.jpg"/>
-            <div>Jhon Smith</div>
+            <Link href="/connexion" className="flex items-center gap-2">
+                <Avatar size={40} icon={<UserOutlined />}/>
+                <div>Se connecter</div>
+            </Link>
         </div>
     </Header>
     );
