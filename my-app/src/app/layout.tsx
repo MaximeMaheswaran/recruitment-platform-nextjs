@@ -50,12 +50,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AntdRegistry>
-          <Layout style={{ minHeight: '100vh' }}>
+          <Layout  style={{ minHeight: '100vh' }}>
             <AppHeader />
             {IsRhPage() ? (
               <Layout hasSider>
                 <AppSide />
-                <Layout style={{marginLeft:"200px"}}>
+                <Layout style={{marginLeft:"200px", marginTop:"100px"}}>
                   <Content style={{ padding: '16px', minHeight: 'calc(100vh - 64px)' }}>
                     {children}
                   </Content>

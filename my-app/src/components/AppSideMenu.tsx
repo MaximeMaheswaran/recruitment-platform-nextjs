@@ -8,6 +8,7 @@ export default function AppSide() {
         <Sider
         theme="light"
         style={{
+            zIndex:2,
             position: "fixed",
             top: "64px",
             left: 0,
