@@ -1,0 +1,3814 @@
+
+/**
+ * Client
+**/
+
+import * as runtime from './runtime/library.js';
+import $Types = runtime.Types // general types
+import $Public = runtime.Types.Public
+import $Utils = runtime.Types.Utils
+import $Extensions = runtime.Types.Extensions
+import $Result = runtime.Types.Result
+
+export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+
+/**
+ * Model Candidate
+ * 
+ */
+export type Candidate = $Result.DefaultSelection<Prisma.$CandidatePayload>
+/**
+ * Model recruteur
+ * 
+ */
+export type recruteur = $Result.DefaultSelection<Prisma.$recruteurPayload>
+
+/**
+ * ##  Prisma Client ʲˢ
+ *
+ * Type-safe database client for TypeScript & Node.js
+ * @example
+ * ```
+ * const prisma = new PrismaClient()
+ * // Fetch zero or more Candidates
+ * const candidates = await prisma.candidate.findMany()
+ * ```
+ *
+ *
+ * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ */
+export class PrismaClient<
+  ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
+
+    /**
+   * ##  Prisma Client ʲˢ
+   *
+   * Type-safe database client for TypeScript & Node.js
+   * @example
+   * ```
+   * const prisma = new PrismaClient()
+   * // Fetch zero or more Candidates
+   * const candidates = await prisma.candidate.findMany()
+   * ```
+   *
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+   */
+
+  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
+  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
+
+  /**
+   * Connect with the database
+   */
+  $connect(): $Utils.JsPromise<void>;
+
+  /**
+   * Disconnect from the database
+   */
+  $disconnect(): $Utils.JsPromise<void>;
+
+  /**
+   * Add a middleware
+   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
+   * @see https://pris.ly/d/extensions
+   */
+  $use(cb: Prisma.Middleware): void
+
+/**
+   * Executes a prepared raw query and returns the number of affected rows.
+   * @example
+   * ```
+   * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Executes a raw query and returns the number of affected rows.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Performs a prepared raw query and returns the `SELECT` data.
+   * @example
+   * ```
+   * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
+
+  /**
+   * Performs a raw query and returns the `SELECT` data.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
+
+
+  /**
+   * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
+   * @example
+   * ```
+   * const [george, bob, alice] = await prisma.$transaction([
+   *   prisma.user.create({ data: { name: 'George' } }),
+   *   prisma.user.create({ data: { name: 'Bob' } }),
+   *   prisma.user.create({ data: { name: 'Alice' } }),
+   * ])
+   * ```
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
+   */
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+
+  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
+
+
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
+    extArgs: ExtArgs
+  }>>
+
+      /**
+   * `prisma.candidate`: Exposes CRUD operations for the **Candidate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Candidates
+    * const candidates = await prisma.candidate.findMany()
+    * ```
+    */
+  get candidate(): Prisma.CandidateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.recruteur`: Exposes CRUD operations for the **recruteur** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Recruteurs
+    * const recruteurs = await prisma.recruteur.findMany()
+    * ```
+    */
+  get recruteur(): Prisma.recruteurDelegate<ExtArgs, ClientOptions>;
+}
+
+export namespace Prisma {
+  export import DMMF = runtime.DMMF
+
+  export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+  /**
+   * Validator
+   */
+  export import validator = runtime.Public.validator
+
+  /**
+   * Prisma Errors
+   */
+  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
+  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
+  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
+  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
+  export import PrismaClientValidationError = runtime.PrismaClientValidationError
+
+  /**
+   * Re-export of sql-template-tag
+   */
+  export import sql = runtime.sqltag
+  export import empty = runtime.empty
+  export import join = runtime.join
+  export import raw = runtime.raw
+  export import Sql = runtime.Sql
+
+
+
+  /**
+   * Decimal.js
+   */
+  export import Decimal = runtime.Decimal
+
+  export type DecimalJsLike = runtime.DecimalJsLike
+
+  /**
+   * Metrics
+   */
+  export type Metrics = runtime.Metrics
+  export type Metric<T> = runtime.Metric<T>
+  export type MetricHistogram = runtime.MetricHistogram
+  export type MetricHistogramBucket = runtime.MetricHistogramBucket
+
+  /**
+  * Extensions
+  */
+  export import Extension = $Extensions.UserArgs
+  export import getExtensionContext = runtime.Extensions.getExtensionContext
+  export import Args = $Public.Args
+  export import Payload = $Public.Payload
+  export import Result = $Public.Result
+  export import Exact = $Public.Exact
+
+  /**
+   * Prisma Client JS version: 6.6.0
+   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   */
+  export type PrismaVersion = {
+    client: string
+  }
+
+  export const prismaVersion: PrismaVersion
+
+  /**
+   * Utility Types
+   */
+
+
+  export import JsonObject = runtime.JsonObject
+  export import JsonArray = runtime.JsonArray
+  export import JsonValue = runtime.JsonValue
+  export import InputJsonObject = runtime.InputJsonObject
+  export import InputJsonArray = runtime.InputJsonArray
+  export import InputJsonValue = runtime.InputJsonValue
+
+  /**
+   * Types of the values used to represent different kinds of `null` values when working with JSON fields.
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  namespace NullTypes {
+    /**
+    * Type of `Prisma.DbNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class DbNull {
+      private DbNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.JsonNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class JsonNull {
+      private JsonNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.AnyNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class AnyNull {
+      private AnyNull: never
+      private constructor()
+    }
+  }
+
+  /**
+   * Helper for filtering JSON entries that have `null` on the database (empty on the db)
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const DbNull: NullTypes.DbNull
+
+  /**
+   * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const JsonNull: NullTypes.JsonNull
+
+  /**
+   * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const AnyNull: NullTypes.AnyNull
+
+  type SelectAndInclude = {
+    select: any
+    include: any
+  }
+
+  type SelectAndOmit = {
+    select: any
+    omit: any
+  }
+
+  /**
+   * Get the type of the value, that the Promise holds.
+   */
+  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
+
+  /**
+   * Get the return type of a function which returns a Promise.
+   */
+  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
+
+  /**
+   * From T, pick a set of properties whose keys are in the union K
+   */
+  type Prisma__Pick<T, K extends keyof T> = {
+      [P in K]: T[P];
+  };
+
+
+  export type Enumerable<T> = T | Array<T>;
+
+  export type RequiredKeys<T> = {
+    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
+  }[keyof T]
+
+  export type TruthyKeys<T> = keyof {
+    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K
+  }
+
+  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
+
+  /**
+   * Subset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection
+   */
+  export type Subset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  };
+
+  /**
+   * SelectSubset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection.
+   * Additionally, it validates, if both select and include are present. If the case, it errors.
+   */
+  export type SelectSubset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    (T extends SelectAndInclude
+      ? 'Please either choose `select` or `include`.'
+      : T extends SelectAndOmit
+        ? 'Please either choose `select` or `omit`.'
+        : {})
+
+  /**
+   * Subset + Intersection
+   * @desc From `T` pick properties that exist in `U` and intersect `K`
+   */
+  export type SubsetIntersection<T, U, K> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    K
+
+  type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+
+  /**
+   * XOR is needed to have a real mutually exclusive union type
+   * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
+   */
+  type XOR<T, U> =
+    T extends object ?
+    U extends object ?
+      (Without<T, U> & U) | (Without<U, T> & T)
+    : U : T
+
+
+  /**
+   * Is T a Record?
+   */
+  type IsObject<T extends any> = T extends Array<any>
+  ? False
+  : T extends Date
+  ? False
+  : T extends Uint8Array
+  ? False
+  : T extends BigInt
+  ? False
+  : T extends object
+  ? True
+  : False
+
+
+  /**
+   * If it's T[], return T
+   */
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
+
+  /**
+   * From ts-toolbelt
+   */
+
+  type __Either<O extends object, K extends Key> = Omit<O, K> &
+    {
+      // Merge all but K
+      [P in K]: Prisma__Pick<O, P & keyof O> // With K possibilities
+    }[K]
+
+  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>
+
+  type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
+
+  type _Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean
+  > = {
+    1: EitherStrict<O, K>
+    0: EitherLoose<O, K>
+  }[strict]
+
+  type Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean = 1
+  > = O extends unknown ? _Either<O, K, strict> : never
+
+  export type Union = any
+
+  type PatchUndefined<O extends object, O1 extends object> = {
+    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K]
+  } & {}
+
+  /** Helper Types for "Merge" **/
+  export type IntersectOf<U extends Union> = (
+    U extends unknown ? (k: U) => void : never
+  ) extends (k: infer I) => void
+    ? I
+    : never
+
+  export type Overwrite<O extends object, O1 extends object> = {
+      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+  } & {};
+
+  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
+      [K in keyof U]-?: At<U, K>;
+  }>>;
+
+  type Key = string | number | symbol;
+  type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
+  type AtStrict<O extends object, K extends Key> = O[K & keyof O];
+  type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
+  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
+      1: AtStrict<O, K>;
+      0: AtLoose<O, K>;
+  }[strict];
+
+  export type ComputeRaw<A extends any> = A extends Function ? A : {
+    [K in keyof A]: A[K];
+  } & {};
+
+  export type OptionalFlat<O> = {
+    [K in keyof O]?: O[K];
+  } & {};
+
+  type _Record<K extends keyof any, T> = {
+    [P in K]: T;
+  };
+
+  // cause typescript not to expand types and preserve names
+  type NoExpand<T> = T extends unknown ? T : never;
+
+  // this type assumes the passed object is entirely optional
+  type AtLeast<O extends object, K extends string> = NoExpand<
+    O extends unknown
+    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
+    : never>;
+
+  type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
+
+  export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
+  /** End Helper Types for "Merge" **/
+
+  export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>;
+
+  /**
+  A [[Boolean]]
+  */
+  export type Boolean = True | False
+
+  // /**
+  // 1
+  // */
+  export type True = 1
+
+  /**
+  0
+  */
+  export type False = 0
+
+  export type Not<B extends Boolean> = {
+    0: 1
+    1: 0
+  }[B]
+
+  export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
+    ? 0 // anything `never` is false
+    : A1 extends A2
+    ? 1
+    : 0
+
+  export type Has<U extends Union, U1 extends Union> = Not<
+    Extends<Exclude<U1, U>, U1>
+  >
+
+  export type Or<B1 extends Boolean, B2 extends Boolean> = {
+    0: {
+      0: 0
+      1: 1
+    }
+    1: {
+      0: 1
+      1: 1
+    }
+  }[B1][B2]
+
+  export type Keys<U extends Union> = U extends unknown ? keyof U : never
+
+  type Cast<A, B> = A extends B ? A : B;
+
+  export const type: unique symbol;
+
+
+
+  /**
+   * Used by group by
+   */
+
+  export type GetScalarType<T, O> = O extends object ? {
+    [P in keyof T]: P extends keyof O
+      ? O[P]
+      : never
+  } : never
+
+  type FieldPaths<
+    T,
+    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>
+  > = IsObject<T> extends True ? U : T
+
+  type GetHavingFields<T> = {
+    [K in keyof T]: Or<
+      Or<Extends<'OR', K>, Extends<'AND', K>>,
+      Extends<'NOT', K>
+    > extends True
+      ? // infer is only needed to not hit TS limit
+        // based on the brilliant idea of Pierre-Antoine Mills
+        // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
+        T[K] extends infer TK
+        ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
+        : never
+      : {} extends FieldPaths<T[K]>
+      ? never
+      : K
+  }[keyof T]
+
+  /**
+   * Convert tuple to union
+   */
+  type _TupleToUnion<T> = T extends (infer E)[] ? E : never
+  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>
+  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
+
+  /**
+   * Like `Pick`, but additionally can also accept an array of keys
+   */
+  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+
+  /**
+   * Exclude all keys with underscores
+   */
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
+
+
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
+
+  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
+
+
+  export const ModelName: {
+    Candidate: 'Candidate',
+    recruteur: 'recruteur'
+  };
+
+  export type ModelName = (typeof ModelName)[keyof typeof ModelName]
+
+
+  export type Datasources = {
+    db?: Datasource
+  }
+
+  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
+  }
+
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
+    globalOmitOptions: {
+      omit: GlobalOmitOptions
+    }
+    meta: {
+      modelProps: "candidate" | "recruteur"
+      txIsolationLevel: Prisma.TransactionIsolationLevel
+    }
+    model: {
+      Candidate: {
+        payload: Prisma.$CandidatePayload<ExtArgs>
+        fields: Prisma.CandidateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CandidateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CandidateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload>
+          }
+          findFirst: {
+            args: Prisma.CandidateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CandidateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload>
+          }
+          findMany: {
+            args: Prisma.CandidateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload>[]
+          }
+          create: {
+            args: Prisma.CandidateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload>
+          }
+          createMany: {
+            args: Prisma.CandidateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CandidateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload>[]
+          }
+          delete: {
+            args: Prisma.CandidateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload>
+          }
+          update: {
+            args: Prisma.CandidateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload>
+          }
+          deleteMany: {
+            args: Prisma.CandidateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CandidateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CandidateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload>[]
+          }
+          upsert: {
+            args: Prisma.CandidateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CandidatePayload>
+          }
+          aggregate: {
+            args: Prisma.CandidateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCandidate>
+          }
+          groupBy: {
+            args: Prisma.CandidateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CandidateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CandidateCountArgs<ExtArgs>
+            result: $Utils.Optional<CandidateCountAggregateOutputType> | number
+          }
+        }
+      }
+      recruteur: {
+        payload: Prisma.$recruteurPayload<ExtArgs>
+        fields: Prisma.recruteurFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.recruteurFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.recruteurFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload>
+          }
+          findFirst: {
+            args: Prisma.recruteurFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.recruteurFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload>
+          }
+          findMany: {
+            args: Prisma.recruteurFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload>[]
+          }
+          create: {
+            args: Prisma.recruteurCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload>
+          }
+          createMany: {
+            args: Prisma.recruteurCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.recruteurCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload>[]
+          }
+          delete: {
+            args: Prisma.recruteurDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload>
+          }
+          update: {
+            args: Prisma.recruteurUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload>
+          }
+          deleteMany: {
+            args: Prisma.recruteurDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.recruteurUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.recruteurUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload>[]
+          }
+          upsert: {
+            args: Prisma.recruteurUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$recruteurPayload>
+          }
+          aggregate: {
+            args: Prisma.RecruteurAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRecruteur>
+          }
+          groupBy: {
+            args: Prisma.recruteurGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RecruteurGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.recruteurCountArgs<ExtArgs>
+            result: $Utils.Optional<RecruteurCountAggregateOutputType> | number
+          }
+        }
+      }
+    }
+  } & {
+    other: {
+      payload: any
+      operations: {
+        $executeRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+        $executeRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+        $queryRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+        $queryRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+      }
+    }
+  }
+  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export type DefaultPrismaClient = PrismaClient
+  export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
+  export interface PrismaClientOptions {
+    /**
+     * Overwrites the datasource url from your schema.prisma file
+     */
+    datasources?: Datasources
+    /**
+     * Overwrites the datasource url from your schema.prisma file
+     */
+    datasourceUrl?: string
+    /**
+     * @default "colorless"
+     */
+    errorFormat?: ErrorFormat
+    /**
+     * @example
+     * ```
+     * // Defaults to stdout
+     * log: ['query', 'info', 'warn', 'error']
+     * 
+     * // Emit as events
+     * log: [
+     *   { emit: 'stdout', level: 'query' },
+     *   { emit: 'stdout', level: 'info' },
+     *   { emit: 'stdout', level: 'warn' }
+     *   { emit: 'stdout', level: 'error' }
+     * ]
+     * ```
+     * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+     */
+    log?: (LogLevel | LogDefinition)[]
+    /**
+     * The default values for transactionOptions
+     * maxWait ?= 2000
+     * timeout ?= 5000
+     */
+    transactionOptions?: {
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    }
+    /**
+     * Global configuration for omitting model fields by default.
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   omit: {
+     *     user: {
+     *       password: true
+     *     }
+     *   }
+     * })
+     * ```
+     */
+    omit?: Prisma.GlobalOmitConfig
+  }
+  export type GlobalOmitConfig = {
+    candidate?: CandidateOmit
+    recruteur?: recruteurOmit
+  }
+
+  /* Types for Logging */
+  export type LogLevel = 'info' | 'query' | 'warn' | 'error'
+  export type LogDefinition = {
+    level: LogLevel
+    emit: 'stdout' | 'event'
+  }
+
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+    : never
+
+  export type QueryEvent = {
+    timestamp: Date
+    query: string
+    params: string
+    duration: number
+    target: string
+  }
+
+  export type LogEvent = {
+    timestamp: Date
+    message: string
+    target: string
+  }
+  /* End Types for Logging */
+
+
+  export type PrismaAction =
+    | 'findUnique'
+    | 'findUniqueOrThrow'
+    | 'findMany'
+    | 'findFirst'
+    | 'findFirstOrThrow'
+    | 'create'
+    | 'createMany'
+    | 'createManyAndReturn'
+    | 'update'
+    | 'updateMany'
+    | 'updateManyAndReturn'
+    | 'upsert'
+    | 'delete'
+    | 'deleteMany'
+    | 'executeRaw'
+    | 'queryRaw'
+    | 'aggregate'
+    | 'count'
+    | 'runCommandRaw'
+    | 'findRaw'
+    | 'groupBy'
+
+  /**
+   * These options are being passed into the middleware as "params"
+   */
+  export type MiddlewareParams = {
+    model?: ModelName
+    action: PrismaAction
+    args: any
+    dataPath: string[]
+    runInTransaction: boolean
+  }
+
+  /**
+   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
+   */
+  export type Middleware<T = any> = (
+    params: MiddlewareParams,
+    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
+  ) => $Utils.JsPromise<T>
+
+  // tested in getLogLevel.test.ts
+  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
+
+  /**
+   * `PrismaClient` proxy available in interactive transactions.
+   */
+  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
+
+  export type Datasource = {
+    url?: string
+  }
+
+  /**
+   * Count Types
+   */
+
+
+
+  /**
+   * Models
+   */
+
+  /**
+   * Model Candidate
+   */
+
+  export type AggregateCandidate = {
+    _count: CandidateCountAggregateOutputType | null
+    _avg: CandidateAvgAggregateOutputType | null
+    _sum: CandidateSumAggregateOutputType | null
+    _min: CandidateMinAggregateOutputType | null
+    _max: CandidateMaxAggregateOutputType | null
+  }
+
+  export type CandidateAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CandidateSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CandidateMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    lastname: string | null
+    email: string | null
+    tel: string | null
+    poste: string | null
+    message: string | null
+    cv: string | null
+    status: string | null
+    createdAt: Date | null
+  }
+
+  export type CandidateMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    lastname: string | null
+    email: string | null
+    tel: string | null
+    poste: string | null
+    message: string | null
+    cv: string | null
+    status: string | null
+    createdAt: Date | null
+  }
+
+  export type CandidateCountAggregateOutputType = {
+    id: number
+    name: number
+    lastname: number
+    email: number
+    tel: number
+    poste: number
+    message: number
+    cv: number
+    status: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CandidateAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type CandidateSumAggregateInputType = {
+    id?: true
+  }
+
+  export type CandidateMinAggregateInputType = {
+    id?: true
+    name?: true
+    lastname?: true
+    email?: true
+    tel?: true
+    poste?: true
+    message?: true
+    cv?: true
+    status?: true
+    createdAt?: true
+  }
+
+  export type CandidateMaxAggregateInputType = {
+    id?: true
+    name?: true
+    lastname?: true
+    email?: true
+    tel?: true
+    poste?: true
+    message?: true
+    cv?: true
+    status?: true
+    createdAt?: true
+  }
+
+  export type CandidateCountAggregateInputType = {
+    id?: true
+    name?: true
+    lastname?: true
+    email?: true
+    tel?: true
+    poste?: true
+    message?: true
+    cv?: true
+    status?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CandidateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Candidate to aggregate.
+     */
+    where?: CandidateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Candidates to fetch.
+     */
+    orderBy?: CandidateOrderByWithRelationInput | CandidateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CandidateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Candidates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Candidates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Candidates
+    **/
+    _count?: true | CandidateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CandidateAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CandidateSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CandidateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CandidateMaxAggregateInputType
+  }
+
+  export type GetCandidateAggregateType<T extends CandidateAggregateArgs> = {
+        [P in keyof T & keyof AggregateCandidate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCandidate[P]>
+      : GetScalarType<T[P], AggregateCandidate[P]>
+  }
+
+
+
+
+  export type CandidateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CandidateWhereInput
+    orderBy?: CandidateOrderByWithAggregationInput | CandidateOrderByWithAggregationInput[]
+    by: CandidateScalarFieldEnum[] | CandidateScalarFieldEnum
+    having?: CandidateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CandidateCountAggregateInputType | true
+    _avg?: CandidateAvgAggregateInputType
+    _sum?: CandidateSumAggregateInputType
+    _min?: CandidateMinAggregateInputType
+    _max?: CandidateMaxAggregateInputType
+  }
+
+  export type CandidateGroupByOutputType = {
+    id: number
+    name: string
+    lastname: string
+    email: string
+    tel: string
+    poste: string
+    message: string
+    cv: string | null
+    status: string
+    createdAt: Date
+    _count: CandidateCountAggregateOutputType | null
+    _avg: CandidateAvgAggregateOutputType | null
+    _sum: CandidateSumAggregateOutputType | null
+    _min: CandidateMinAggregateOutputType | null
+    _max: CandidateMaxAggregateOutputType | null
+  }
+
+  type GetCandidateGroupByPayload<T extends CandidateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CandidateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CandidateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CandidateGroupByOutputType[P]>
+            : GetScalarType<T[P], CandidateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CandidateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    lastname?: boolean
+    email?: boolean
+    tel?: boolean
+    poste?: boolean
+    message?: boolean
+    cv?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["candidate"]>
+
+  export type CandidateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    lastname?: boolean
+    email?: boolean
+    tel?: boolean
+    poste?: boolean
+    message?: boolean
+    cv?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["candidate"]>
+
+  export type CandidateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    lastname?: boolean
+    email?: boolean
+    tel?: boolean
+    poste?: boolean
+    message?: boolean
+    cv?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["candidate"]>
+
+  export type CandidateSelectScalar = {
+    id?: boolean
+    name?: boolean
+    lastname?: boolean
+    email?: boolean
+    tel?: boolean
+    poste?: boolean
+    message?: boolean
+    cv?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }
+
+  export type CandidateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "lastname" | "email" | "tel" | "poste" | "message" | "cv" | "status" | "createdAt", ExtArgs["result"]["candidate"]>
+
+  export type $CandidatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Candidate"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      lastname: string
+      email: string
+      tel: string
+      poste: string
+      message: string
+      cv: string | null
+      status: string
+      createdAt: Date
+    }, ExtArgs["result"]["candidate"]>
+    composites: {}
+  }
+
+  type CandidateGetPayload<S extends boolean | null | undefined | CandidateDefaultArgs> = $Result.GetResult<Prisma.$CandidatePayload, S>
+
+  type CandidateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CandidateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CandidateCountAggregateInputType | true
+    }
+
+  export interface CandidateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Candidate'], meta: { name: 'Candidate' } }
+    /**
+     * Find zero or one Candidate that matches the filter.
+     * @param {CandidateFindUniqueArgs} args - Arguments to find a Candidate
+     * @example
+     * // Get one Candidate
+     * const candidate = await prisma.candidate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CandidateFindUniqueArgs>(args: SelectSubset<T, CandidateFindUniqueArgs<ExtArgs>>): Prisma__CandidateClient<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Candidate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CandidateFindUniqueOrThrowArgs} args - Arguments to find a Candidate
+     * @example
+     * // Get one Candidate
+     * const candidate = await prisma.candidate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CandidateFindUniqueOrThrowArgs>(args: SelectSubset<T, CandidateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CandidateClient<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Candidate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateFindFirstArgs} args - Arguments to find a Candidate
+     * @example
+     * // Get one Candidate
+     * const candidate = await prisma.candidate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CandidateFindFirstArgs>(args?: SelectSubset<T, CandidateFindFirstArgs<ExtArgs>>): Prisma__CandidateClient<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Candidate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateFindFirstOrThrowArgs} args - Arguments to find a Candidate
+     * @example
+     * // Get one Candidate
+     * const candidate = await prisma.candidate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CandidateFindFirstOrThrowArgs>(args?: SelectSubset<T, CandidateFindFirstOrThrowArgs<ExtArgs>>): Prisma__CandidateClient<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Candidates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Candidates
+     * const candidates = await prisma.candidate.findMany()
+     * 
+     * // Get first 10 Candidates
+     * const candidates = await prisma.candidate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const candidateWithIdOnly = await prisma.candidate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CandidateFindManyArgs>(args?: SelectSubset<T, CandidateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Candidate.
+     * @param {CandidateCreateArgs} args - Arguments to create a Candidate.
+     * @example
+     * // Create one Candidate
+     * const Candidate = await prisma.candidate.create({
+     *   data: {
+     *     // ... data to create a Candidate
+     *   }
+     * })
+     * 
+     */
+    create<T extends CandidateCreateArgs>(args: SelectSubset<T, CandidateCreateArgs<ExtArgs>>): Prisma__CandidateClient<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Candidates.
+     * @param {CandidateCreateManyArgs} args - Arguments to create many Candidates.
+     * @example
+     * // Create many Candidates
+     * const candidate = await prisma.candidate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CandidateCreateManyArgs>(args?: SelectSubset<T, CandidateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Candidates and returns the data saved in the database.
+     * @param {CandidateCreateManyAndReturnArgs} args - Arguments to create many Candidates.
+     * @example
+     * // Create many Candidates
+     * const candidate = await prisma.candidate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Candidates and only return the `id`
+     * const candidateWithIdOnly = await prisma.candidate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CandidateCreateManyAndReturnArgs>(args?: SelectSubset<T, CandidateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Candidate.
+     * @param {CandidateDeleteArgs} args - Arguments to delete one Candidate.
+     * @example
+     * // Delete one Candidate
+     * const Candidate = await prisma.candidate.delete({
+     *   where: {
+     *     // ... filter to delete one Candidate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CandidateDeleteArgs>(args: SelectSubset<T, CandidateDeleteArgs<ExtArgs>>): Prisma__CandidateClient<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Candidate.
+     * @param {CandidateUpdateArgs} args - Arguments to update one Candidate.
+     * @example
+     * // Update one Candidate
+     * const candidate = await prisma.candidate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CandidateUpdateArgs>(args: SelectSubset<T, CandidateUpdateArgs<ExtArgs>>): Prisma__CandidateClient<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Candidates.
+     * @param {CandidateDeleteManyArgs} args - Arguments to filter Candidates to delete.
+     * @example
+     * // Delete a few Candidates
+     * const { count } = await prisma.candidate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CandidateDeleteManyArgs>(args?: SelectSubset<T, CandidateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Candidates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Candidates
+     * const candidate = await prisma.candidate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CandidateUpdateManyArgs>(args: SelectSubset<T, CandidateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Candidates and returns the data updated in the database.
+     * @param {CandidateUpdateManyAndReturnArgs} args - Arguments to update many Candidates.
+     * @example
+     * // Update many Candidates
+     * const candidate = await prisma.candidate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Candidates and only return the `id`
+     * const candidateWithIdOnly = await prisma.candidate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CandidateUpdateManyAndReturnArgs>(args: SelectSubset<T, CandidateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Candidate.
+     * @param {CandidateUpsertArgs} args - Arguments to update or create a Candidate.
+     * @example
+     * // Update or create a Candidate
+     * const candidate = await prisma.candidate.upsert({
+     *   create: {
+     *     // ... data to create a Candidate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Candidate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CandidateUpsertArgs>(args: SelectSubset<T, CandidateUpsertArgs<ExtArgs>>): Prisma__CandidateClient<$Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Candidates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateCountArgs} args - Arguments to filter Candidates to count.
+     * @example
+     * // Count the number of Candidates
+     * const count = await prisma.candidate.count({
+     *   where: {
+     *     // ... the filter for the Candidates we want to count
+     *   }
+     * })
+    **/
+    count<T extends CandidateCountArgs>(
+      args?: Subset<T, CandidateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CandidateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Candidate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CandidateAggregateArgs>(args: Subset<T, CandidateAggregateArgs>): Prisma.PrismaPromise<GetCandidateAggregateType<T>>
+
+    /**
+     * Group by Candidate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CandidateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CandidateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CandidateGroupByArgs['orderBy'] }
+        : { orderBy?: CandidateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CandidateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCandidateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Candidate model
+   */
+  readonly fields: CandidateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Candidate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CandidateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Candidate model
+   */
+  interface CandidateFieldRefs {
+    readonly id: FieldRef<"Candidate", 'Int'>
+    readonly name: FieldRef<"Candidate", 'String'>
+    readonly lastname: FieldRef<"Candidate", 'String'>
+    readonly email: FieldRef<"Candidate", 'String'>
+    readonly tel: FieldRef<"Candidate", 'String'>
+    readonly poste: FieldRef<"Candidate", 'String'>
+    readonly message: FieldRef<"Candidate", 'String'>
+    readonly cv: FieldRef<"Candidate", 'String'>
+    readonly status: FieldRef<"Candidate", 'String'>
+    readonly createdAt: FieldRef<"Candidate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Candidate findUnique
+   */
+  export type CandidateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * Filter, which Candidate to fetch.
+     */
+    where: CandidateWhereUniqueInput
+  }
+
+  /**
+   * Candidate findUniqueOrThrow
+   */
+  export type CandidateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * Filter, which Candidate to fetch.
+     */
+    where: CandidateWhereUniqueInput
+  }
+
+  /**
+   * Candidate findFirst
+   */
+  export type CandidateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * Filter, which Candidate to fetch.
+     */
+    where?: CandidateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Candidates to fetch.
+     */
+    orderBy?: CandidateOrderByWithRelationInput | CandidateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Candidates.
+     */
+    cursor?: CandidateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Candidates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Candidates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Candidates.
+     */
+    distinct?: CandidateScalarFieldEnum | CandidateScalarFieldEnum[]
+  }
+
+  /**
+   * Candidate findFirstOrThrow
+   */
+  export type CandidateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * Filter, which Candidate to fetch.
+     */
+    where?: CandidateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Candidates to fetch.
+     */
+    orderBy?: CandidateOrderByWithRelationInput | CandidateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Candidates.
+     */
+    cursor?: CandidateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Candidates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Candidates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Candidates.
+     */
+    distinct?: CandidateScalarFieldEnum | CandidateScalarFieldEnum[]
+  }
+
+  /**
+   * Candidate findMany
+   */
+  export type CandidateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * Filter, which Candidates to fetch.
+     */
+    where?: CandidateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Candidates to fetch.
+     */
+    orderBy?: CandidateOrderByWithRelationInput | CandidateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Candidates.
+     */
+    cursor?: CandidateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Candidates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Candidates.
+     */
+    skip?: number
+    distinct?: CandidateScalarFieldEnum | CandidateScalarFieldEnum[]
+  }
+
+  /**
+   * Candidate create
+   */
+  export type CandidateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Candidate.
+     */
+    data: XOR<CandidateCreateInput, CandidateUncheckedCreateInput>
+  }
+
+  /**
+   * Candidate createMany
+   */
+  export type CandidateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Candidates.
+     */
+    data: CandidateCreateManyInput | CandidateCreateManyInput[]
+  }
+
+  /**
+   * Candidate createManyAndReturn
+   */
+  export type CandidateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * The data used to create many Candidates.
+     */
+    data: CandidateCreateManyInput | CandidateCreateManyInput[]
+  }
+
+  /**
+   * Candidate update
+   */
+  export type CandidateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Candidate.
+     */
+    data: XOR<CandidateUpdateInput, CandidateUncheckedUpdateInput>
+    /**
+     * Choose, which Candidate to update.
+     */
+    where: CandidateWhereUniqueInput
+  }
+
+  /**
+   * Candidate updateMany
+   */
+  export type CandidateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Candidates.
+     */
+    data: XOR<CandidateUpdateManyMutationInput, CandidateUncheckedUpdateManyInput>
+    /**
+     * Filter which Candidates to update
+     */
+    where?: CandidateWhereInput
+    /**
+     * Limit how many Candidates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Candidate updateManyAndReturn
+   */
+  export type CandidateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * The data used to update Candidates.
+     */
+    data: XOR<CandidateUpdateManyMutationInput, CandidateUncheckedUpdateManyInput>
+    /**
+     * Filter which Candidates to update
+     */
+    where?: CandidateWhereInput
+    /**
+     * Limit how many Candidates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Candidate upsert
+   */
+  export type CandidateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Candidate to update in case it exists.
+     */
+    where: CandidateWhereUniqueInput
+    /**
+     * In case the Candidate found by the `where` argument doesn't exist, create a new Candidate with this data.
+     */
+    create: XOR<CandidateCreateInput, CandidateUncheckedCreateInput>
+    /**
+     * In case the Candidate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CandidateUpdateInput, CandidateUncheckedUpdateInput>
+  }
+
+  /**
+   * Candidate delete
+   */
+  export type CandidateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+    /**
+     * Filter which Candidate to delete.
+     */
+    where: CandidateWhereUniqueInput
+  }
+
+  /**
+   * Candidate deleteMany
+   */
+  export type CandidateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Candidates to delete
+     */
+    where?: CandidateWhereInput
+    /**
+     * Limit how many Candidates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Candidate without action
+   */
+  export type CandidateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Candidate
+     */
+    select?: CandidateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Candidate
+     */
+    omit?: CandidateOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model recruteur
+   */
+
+  export type AggregateRecruteur = {
+    _count: RecruteurCountAggregateOutputType | null
+    _avg: RecruteurAvgAggregateOutputType | null
+    _sum: RecruteurSumAggregateOutputType | null
+    _min: RecruteurMinAggregateOutputType | null
+    _max: RecruteurMaxAggregateOutputType | null
+  }
+
+  export type RecruteurAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RecruteurSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RecruteurMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    lastname: string | null
+    username: string | null
+    password: string | null
+  }
+
+  export type RecruteurMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    lastname: string | null
+    username: string | null
+    password: string | null
+  }
+
+  export type RecruteurCountAggregateOutputType = {
+    id: number
+    name: number
+    lastname: number
+    username: number
+    password: number
+    _all: number
+  }
+
+
+  export type RecruteurAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type RecruteurSumAggregateInputType = {
+    id?: true
+  }
+
+  export type RecruteurMinAggregateInputType = {
+    id?: true
+    name?: true
+    lastname?: true
+    username?: true
+    password?: true
+  }
+
+  export type RecruteurMaxAggregateInputType = {
+    id?: true
+    name?: true
+    lastname?: true
+    username?: true
+    password?: true
+  }
+
+  export type RecruteurCountAggregateInputType = {
+    id?: true
+    name?: true
+    lastname?: true
+    username?: true
+    password?: true
+    _all?: true
+  }
+
+  export type RecruteurAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which recruteur to aggregate.
+     */
+    where?: recruteurWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of recruteurs to fetch.
+     */
+    orderBy?: recruteurOrderByWithRelationInput | recruteurOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: recruteurWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` recruteurs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` recruteurs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned recruteurs
+    **/
+    _count?: true | RecruteurCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RecruteurAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RecruteurSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RecruteurMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RecruteurMaxAggregateInputType
+  }
+
+  export type GetRecruteurAggregateType<T extends RecruteurAggregateArgs> = {
+        [P in keyof T & keyof AggregateRecruteur]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRecruteur[P]>
+      : GetScalarType<T[P], AggregateRecruteur[P]>
+  }
+
+
+
+
+  export type recruteurGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: recruteurWhereInput
+    orderBy?: recruteurOrderByWithAggregationInput | recruteurOrderByWithAggregationInput[]
+    by: RecruteurScalarFieldEnum[] | RecruteurScalarFieldEnum
+    having?: recruteurScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RecruteurCountAggregateInputType | true
+    _avg?: RecruteurAvgAggregateInputType
+    _sum?: RecruteurSumAggregateInputType
+    _min?: RecruteurMinAggregateInputType
+    _max?: RecruteurMaxAggregateInputType
+  }
+
+  export type RecruteurGroupByOutputType = {
+    id: number
+    name: string
+    lastname: string
+    username: string
+    password: string
+    _count: RecruteurCountAggregateOutputType | null
+    _avg: RecruteurAvgAggregateOutputType | null
+    _sum: RecruteurSumAggregateOutputType | null
+    _min: RecruteurMinAggregateOutputType | null
+    _max: RecruteurMaxAggregateOutputType | null
+  }
+
+  type GetRecruteurGroupByPayload<T extends recruteurGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RecruteurGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RecruteurGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RecruteurGroupByOutputType[P]>
+            : GetScalarType<T[P], RecruteurGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type recruteurSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    lastname?: boolean
+    username?: boolean
+    password?: boolean
+  }, ExtArgs["result"]["recruteur"]>
+
+  export type recruteurSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    lastname?: boolean
+    username?: boolean
+    password?: boolean
+  }, ExtArgs["result"]["recruteur"]>
+
+  export type recruteurSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    lastname?: boolean
+    username?: boolean
+    password?: boolean
+  }, ExtArgs["result"]["recruteur"]>
+
+  export type recruteurSelectScalar = {
+    id?: boolean
+    name?: boolean
+    lastname?: boolean
+    username?: boolean
+    password?: boolean
+  }
+
+  export type recruteurOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "lastname" | "username" | "password", ExtArgs["result"]["recruteur"]>
+
+  export type $recruteurPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "recruteur"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      lastname: string
+      username: string
+      password: string
+    }, ExtArgs["result"]["recruteur"]>
+    composites: {}
+  }
+
+  type recruteurGetPayload<S extends boolean | null | undefined | recruteurDefaultArgs> = $Result.GetResult<Prisma.$recruteurPayload, S>
+
+  type recruteurCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<recruteurFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RecruteurCountAggregateInputType | true
+    }
+
+  export interface recruteurDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['recruteur'], meta: { name: 'recruteur' } }
+    /**
+     * Find zero or one Recruteur that matches the filter.
+     * @param {recruteurFindUniqueArgs} args - Arguments to find a Recruteur
+     * @example
+     * // Get one Recruteur
+     * const recruteur = await prisma.recruteur.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends recruteurFindUniqueArgs>(args: SelectSubset<T, recruteurFindUniqueArgs<ExtArgs>>): Prisma__recruteurClient<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Recruteur that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {recruteurFindUniqueOrThrowArgs} args - Arguments to find a Recruteur
+     * @example
+     * // Get one Recruteur
+     * const recruteur = await prisma.recruteur.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends recruteurFindUniqueOrThrowArgs>(args: SelectSubset<T, recruteurFindUniqueOrThrowArgs<ExtArgs>>): Prisma__recruteurClient<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Recruteur that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {recruteurFindFirstArgs} args - Arguments to find a Recruteur
+     * @example
+     * // Get one Recruteur
+     * const recruteur = await prisma.recruteur.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends recruteurFindFirstArgs>(args?: SelectSubset<T, recruteurFindFirstArgs<ExtArgs>>): Prisma__recruteurClient<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Recruteur that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {recruteurFindFirstOrThrowArgs} args - Arguments to find a Recruteur
+     * @example
+     * // Get one Recruteur
+     * const recruteur = await prisma.recruteur.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends recruteurFindFirstOrThrowArgs>(args?: SelectSubset<T, recruteurFindFirstOrThrowArgs<ExtArgs>>): Prisma__recruteurClient<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Recruteurs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {recruteurFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Recruteurs
+     * const recruteurs = await prisma.recruteur.findMany()
+     * 
+     * // Get first 10 Recruteurs
+     * const recruteurs = await prisma.recruteur.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const recruteurWithIdOnly = await prisma.recruteur.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends recruteurFindManyArgs>(args?: SelectSubset<T, recruteurFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Recruteur.
+     * @param {recruteurCreateArgs} args - Arguments to create a Recruteur.
+     * @example
+     * // Create one Recruteur
+     * const Recruteur = await prisma.recruteur.create({
+     *   data: {
+     *     // ... data to create a Recruteur
+     *   }
+     * })
+     * 
+     */
+    create<T extends recruteurCreateArgs>(args: SelectSubset<T, recruteurCreateArgs<ExtArgs>>): Prisma__recruteurClient<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Recruteurs.
+     * @param {recruteurCreateManyArgs} args - Arguments to create many Recruteurs.
+     * @example
+     * // Create many Recruteurs
+     * const recruteur = await prisma.recruteur.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends recruteurCreateManyArgs>(args?: SelectSubset<T, recruteurCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Recruteurs and returns the data saved in the database.
+     * @param {recruteurCreateManyAndReturnArgs} args - Arguments to create many Recruteurs.
+     * @example
+     * // Create many Recruteurs
+     * const recruteur = await prisma.recruteur.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Recruteurs and only return the `id`
+     * const recruteurWithIdOnly = await prisma.recruteur.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends recruteurCreateManyAndReturnArgs>(args?: SelectSubset<T, recruteurCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Recruteur.
+     * @param {recruteurDeleteArgs} args - Arguments to delete one Recruteur.
+     * @example
+     * // Delete one Recruteur
+     * const Recruteur = await prisma.recruteur.delete({
+     *   where: {
+     *     // ... filter to delete one Recruteur
+     *   }
+     * })
+     * 
+     */
+    delete<T extends recruteurDeleteArgs>(args: SelectSubset<T, recruteurDeleteArgs<ExtArgs>>): Prisma__recruteurClient<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Recruteur.
+     * @param {recruteurUpdateArgs} args - Arguments to update one Recruteur.
+     * @example
+     * // Update one Recruteur
+     * const recruteur = await prisma.recruteur.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends recruteurUpdateArgs>(args: SelectSubset<T, recruteurUpdateArgs<ExtArgs>>): Prisma__recruteurClient<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Recruteurs.
+     * @param {recruteurDeleteManyArgs} args - Arguments to filter Recruteurs to delete.
+     * @example
+     * // Delete a few Recruteurs
+     * const { count } = await prisma.recruteur.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends recruteurDeleteManyArgs>(args?: SelectSubset<T, recruteurDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Recruteurs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {recruteurUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Recruteurs
+     * const recruteur = await prisma.recruteur.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends recruteurUpdateManyArgs>(args: SelectSubset<T, recruteurUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Recruteurs and returns the data updated in the database.
+     * @param {recruteurUpdateManyAndReturnArgs} args - Arguments to update many Recruteurs.
+     * @example
+     * // Update many Recruteurs
+     * const recruteur = await prisma.recruteur.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Recruteurs and only return the `id`
+     * const recruteurWithIdOnly = await prisma.recruteur.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends recruteurUpdateManyAndReturnArgs>(args: SelectSubset<T, recruteurUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Recruteur.
+     * @param {recruteurUpsertArgs} args - Arguments to update or create a Recruteur.
+     * @example
+     * // Update or create a Recruteur
+     * const recruteur = await prisma.recruteur.upsert({
+     *   create: {
+     *     // ... data to create a Recruteur
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Recruteur we want to update
+     *   }
+     * })
+     */
+    upsert<T extends recruteurUpsertArgs>(args: SelectSubset<T, recruteurUpsertArgs<ExtArgs>>): Prisma__recruteurClient<$Result.GetResult<Prisma.$recruteurPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Recruteurs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {recruteurCountArgs} args - Arguments to filter Recruteurs to count.
+     * @example
+     * // Count the number of Recruteurs
+     * const count = await prisma.recruteur.count({
+     *   where: {
+     *     // ... the filter for the Recruteurs we want to count
+     *   }
+     * })
+    **/
+    count<T extends recruteurCountArgs>(
+      args?: Subset<T, recruteurCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RecruteurCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Recruteur.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecruteurAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RecruteurAggregateArgs>(args: Subset<T, RecruteurAggregateArgs>): Prisma.PrismaPromise<GetRecruteurAggregateType<T>>
+
+    /**
+     * Group by Recruteur.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {recruteurGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends recruteurGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: recruteurGroupByArgs['orderBy'] }
+        : { orderBy?: recruteurGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, recruteurGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRecruteurGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the recruteur model
+   */
+  readonly fields: recruteurFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for recruteur.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__recruteurClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the recruteur model
+   */
+  interface recruteurFieldRefs {
+    readonly id: FieldRef<"recruteur", 'Int'>
+    readonly name: FieldRef<"recruteur", 'String'>
+    readonly lastname: FieldRef<"recruteur", 'String'>
+    readonly username: FieldRef<"recruteur", 'String'>
+    readonly password: FieldRef<"recruteur", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * recruteur findUnique
+   */
+  export type recruteurFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * Filter, which recruteur to fetch.
+     */
+    where: recruteurWhereUniqueInput
+  }
+
+  /**
+   * recruteur findUniqueOrThrow
+   */
+  export type recruteurFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * Filter, which recruteur to fetch.
+     */
+    where: recruteurWhereUniqueInput
+  }
+
+  /**
+   * recruteur findFirst
+   */
+  export type recruteurFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * Filter, which recruteur to fetch.
+     */
+    where?: recruteurWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of recruteurs to fetch.
+     */
+    orderBy?: recruteurOrderByWithRelationInput | recruteurOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for recruteurs.
+     */
+    cursor?: recruteurWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` recruteurs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` recruteurs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of recruteurs.
+     */
+    distinct?: RecruteurScalarFieldEnum | RecruteurScalarFieldEnum[]
+  }
+
+  /**
+   * recruteur findFirstOrThrow
+   */
+  export type recruteurFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * Filter, which recruteur to fetch.
+     */
+    where?: recruteurWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of recruteurs to fetch.
+     */
+    orderBy?: recruteurOrderByWithRelationInput | recruteurOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for recruteurs.
+     */
+    cursor?: recruteurWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` recruteurs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` recruteurs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of recruteurs.
+     */
+    distinct?: RecruteurScalarFieldEnum | RecruteurScalarFieldEnum[]
+  }
+
+  /**
+   * recruteur findMany
+   */
+  export type recruteurFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * Filter, which recruteurs to fetch.
+     */
+    where?: recruteurWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of recruteurs to fetch.
+     */
+    orderBy?: recruteurOrderByWithRelationInput | recruteurOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing recruteurs.
+     */
+    cursor?: recruteurWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` recruteurs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` recruteurs.
+     */
+    skip?: number
+    distinct?: RecruteurScalarFieldEnum | RecruteurScalarFieldEnum[]
+  }
+
+  /**
+   * recruteur create
+   */
+  export type recruteurCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * The data needed to create a recruteur.
+     */
+    data: XOR<recruteurCreateInput, recruteurUncheckedCreateInput>
+  }
+
+  /**
+   * recruteur createMany
+   */
+  export type recruteurCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many recruteurs.
+     */
+    data: recruteurCreateManyInput | recruteurCreateManyInput[]
+  }
+
+  /**
+   * recruteur createManyAndReturn
+   */
+  export type recruteurCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * The data used to create many recruteurs.
+     */
+    data: recruteurCreateManyInput | recruteurCreateManyInput[]
+  }
+
+  /**
+   * recruteur update
+   */
+  export type recruteurUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * The data needed to update a recruteur.
+     */
+    data: XOR<recruteurUpdateInput, recruteurUncheckedUpdateInput>
+    /**
+     * Choose, which recruteur to update.
+     */
+    where: recruteurWhereUniqueInput
+  }
+
+  /**
+   * recruteur updateMany
+   */
+  export type recruteurUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update recruteurs.
+     */
+    data: XOR<recruteurUpdateManyMutationInput, recruteurUncheckedUpdateManyInput>
+    /**
+     * Filter which recruteurs to update
+     */
+    where?: recruteurWhereInput
+    /**
+     * Limit how many recruteurs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * recruteur updateManyAndReturn
+   */
+  export type recruteurUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * The data used to update recruteurs.
+     */
+    data: XOR<recruteurUpdateManyMutationInput, recruteurUncheckedUpdateManyInput>
+    /**
+     * Filter which recruteurs to update
+     */
+    where?: recruteurWhereInput
+    /**
+     * Limit how many recruteurs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * recruteur upsert
+   */
+  export type recruteurUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * The filter to search for the recruteur to update in case it exists.
+     */
+    where: recruteurWhereUniqueInput
+    /**
+     * In case the recruteur found by the `where` argument doesn't exist, create a new recruteur with this data.
+     */
+    create: XOR<recruteurCreateInput, recruteurUncheckedCreateInput>
+    /**
+     * In case the recruteur was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<recruteurUpdateInput, recruteurUncheckedUpdateInput>
+  }
+
+  /**
+   * recruteur delete
+   */
+  export type recruteurDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+    /**
+     * Filter which recruteur to delete.
+     */
+    where: recruteurWhereUniqueInput
+  }
+
+  /**
+   * recruteur deleteMany
+   */
+  export type recruteurDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which recruteurs to delete
+     */
+    where?: recruteurWhereInput
+    /**
+     * Limit how many recruteurs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * recruteur without action
+   */
+  export type recruteurDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the recruteur
+     */
+    select?: recruteurSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the recruteur
+     */
+    omit?: recruteurOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Enums
+   */
+
+  export const TransactionIsolationLevel: {
+    Serializable: 'Serializable'
+  };
+
+  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+  export const CandidateScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    lastname: 'lastname',
+    email: 'email',
+    tel: 'tel',
+    poste: 'poste',
+    message: 'message',
+    cv: 'cv',
+    status: 'status',
+    createdAt: 'createdAt'
+  };
+
+  export type CandidateScalarFieldEnum = (typeof CandidateScalarFieldEnum)[keyof typeof CandidateScalarFieldEnum]
+
+
+  export const RecruteurScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    lastname: 'lastname',
+    username: 'username',
+    password: 'password'
+  };
+
+  export type RecruteurScalarFieldEnum = (typeof RecruteurScalarFieldEnum)[keyof typeof RecruteurScalarFieldEnum]
+
+
+  export const SortOrder: {
+    asc: 'asc',
+    desc: 'desc'
+  };
+
+  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  /**
+   * Field references
+   */
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'String'
+   */
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+  /**
+   * Deep Input Types
+   */
+
+
+  export type CandidateWhereInput = {
+    AND?: CandidateWhereInput | CandidateWhereInput[]
+    OR?: CandidateWhereInput[]
+    NOT?: CandidateWhereInput | CandidateWhereInput[]
+    id?: IntFilter<"Candidate"> | number
+    name?: StringFilter<"Candidate"> | string
+    lastname?: StringFilter<"Candidate"> | string
+    email?: StringFilter<"Candidate"> | string
+    tel?: StringFilter<"Candidate"> | string
+    poste?: StringFilter<"Candidate"> | string
+    message?: StringFilter<"Candidate"> | string
+    cv?: StringNullableFilter<"Candidate"> | string | null
+    status?: StringFilter<"Candidate"> | string
+    createdAt?: DateTimeFilter<"Candidate"> | Date | string
+  }
+
+  export type CandidateOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    tel?: SortOrder
+    poste?: SortOrder
+    message?: SortOrder
+    cv?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CandidateWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    email?: string
+    AND?: CandidateWhereInput | CandidateWhereInput[]
+    OR?: CandidateWhereInput[]
+    NOT?: CandidateWhereInput | CandidateWhereInput[]
+    name?: StringFilter<"Candidate"> | string
+    lastname?: StringFilter<"Candidate"> | string
+    tel?: StringFilter<"Candidate"> | string
+    poste?: StringFilter<"Candidate"> | string
+    message?: StringFilter<"Candidate"> | string
+    cv?: StringNullableFilter<"Candidate"> | string | null
+    status?: StringFilter<"Candidate"> | string
+    createdAt?: DateTimeFilter<"Candidate"> | Date | string
+  }, "id" | "email">
+
+  export type CandidateOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    tel?: SortOrder
+    poste?: SortOrder
+    message?: SortOrder
+    cv?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    _count?: CandidateCountOrderByAggregateInput
+    _avg?: CandidateAvgOrderByAggregateInput
+    _max?: CandidateMaxOrderByAggregateInput
+    _min?: CandidateMinOrderByAggregateInput
+    _sum?: CandidateSumOrderByAggregateInput
+  }
+
+  export type CandidateScalarWhereWithAggregatesInput = {
+    AND?: CandidateScalarWhereWithAggregatesInput | CandidateScalarWhereWithAggregatesInput[]
+    OR?: CandidateScalarWhereWithAggregatesInput[]
+    NOT?: CandidateScalarWhereWithAggregatesInput | CandidateScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Candidate"> | number
+    name?: StringWithAggregatesFilter<"Candidate"> | string
+    lastname?: StringWithAggregatesFilter<"Candidate"> | string
+    email?: StringWithAggregatesFilter<"Candidate"> | string
+    tel?: StringWithAggregatesFilter<"Candidate"> | string
+    poste?: StringWithAggregatesFilter<"Candidate"> | string
+    message?: StringWithAggregatesFilter<"Candidate"> | string
+    cv?: StringNullableWithAggregatesFilter<"Candidate"> | string | null
+    status?: StringWithAggregatesFilter<"Candidate"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Candidate"> | Date | string
+  }
+
+  export type recruteurWhereInput = {
+    AND?: recruteurWhereInput | recruteurWhereInput[]
+    OR?: recruteurWhereInput[]
+    NOT?: recruteurWhereInput | recruteurWhereInput[]
+    id?: IntFilter<"recruteur"> | number
+    name?: StringFilter<"recruteur"> | string
+    lastname?: StringFilter<"recruteur"> | string
+    username?: StringFilter<"recruteur"> | string
+    password?: StringFilter<"recruteur"> | string
+  }
+
+  export type recruteurOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+  }
+
+  export type recruteurWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    username?: string
+    AND?: recruteurWhereInput | recruteurWhereInput[]
+    OR?: recruteurWhereInput[]
+    NOT?: recruteurWhereInput | recruteurWhereInput[]
+    name?: StringFilter<"recruteur"> | string
+    lastname?: StringFilter<"recruteur"> | string
+    password?: StringFilter<"recruteur"> | string
+  }, "id" | "username">
+
+  export type recruteurOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    _count?: recruteurCountOrderByAggregateInput
+    _avg?: recruteurAvgOrderByAggregateInput
+    _max?: recruteurMaxOrderByAggregateInput
+    _min?: recruteurMinOrderByAggregateInput
+    _sum?: recruteurSumOrderByAggregateInput
+  }
+
+  export type recruteurScalarWhereWithAggregatesInput = {
+    AND?: recruteurScalarWhereWithAggregatesInput | recruteurScalarWhereWithAggregatesInput[]
+    OR?: recruteurScalarWhereWithAggregatesInput[]
+    NOT?: recruteurScalarWhereWithAggregatesInput | recruteurScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"recruteur"> | number
+    name?: StringWithAggregatesFilter<"recruteur"> | string
+    lastname?: StringWithAggregatesFilter<"recruteur"> | string
+    username?: StringWithAggregatesFilter<"recruteur"> | string
+    password?: StringWithAggregatesFilter<"recruteur"> | string
+  }
+
+  export type CandidateCreateInput = {
+    name: string
+    lastname: string
+    email: string
+    tel: string
+    poste: string
+    message: string
+    cv?: string | null
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type CandidateUncheckedCreateInput = {
+    id?: number
+    name: string
+    lastname: string
+    email: string
+    tel: string
+    poste: string
+    message: string
+    cv?: string | null
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type CandidateUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: StringFieldUpdateOperationsInput | string
+    poste?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    cv?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CandidateUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: StringFieldUpdateOperationsInput | string
+    poste?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    cv?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CandidateCreateManyInput = {
+    id?: number
+    name: string
+    lastname: string
+    email: string
+    tel: string
+    poste: string
+    message: string
+    cv?: string | null
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type CandidateUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: StringFieldUpdateOperationsInput | string
+    poste?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    cv?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CandidateUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: StringFieldUpdateOperationsInput | string
+    poste?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    cv?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type recruteurCreateInput = {
+    name: string
+    lastname: string
+    username: string
+    password: string
+  }
+
+  export type recruteurUncheckedCreateInput = {
+    id?: number
+    name: string
+    lastname: string
+    username: string
+    password: string
+  }
+
+  export type recruteurUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type recruteurUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type recruteurCreateManyInput = {
+    id?: number
+    name: string
+    lastname: string
+    username: string
+    password: string
+  }
+
+  export type recruteurUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type recruteurUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type CandidateCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    tel?: SortOrder
+    poste?: SortOrder
+    message?: SortOrder
+    cv?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CandidateAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type CandidateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    tel?: SortOrder
+    poste?: SortOrder
+    message?: SortOrder
+    cv?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CandidateMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    tel?: SortOrder
+    poste?: SortOrder
+    message?: SortOrder
+    cv?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CandidateSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type recruteurCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+  }
+
+  export type recruteurAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type recruteurMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+  }
+
+  export type recruteurMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    lastname?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+  }
+
+  export type recruteurSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+
+
+  /**
+   * Batch Payload for updateMany & deleteMany & createMany
+   */
+
+  export type BatchPayload = {
+    count: number
+  }
+
+  /**
+   * DMMF
+   */
+  export const dmmf: runtime.BaseDMMF
+}

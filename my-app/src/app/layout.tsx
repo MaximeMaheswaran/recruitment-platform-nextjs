@@ -7,13 +7,15 @@ import "./globals.css";
 
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import AppHeader from "@/components/AppHeader";
-import { Layout } from 'antd';
+import { ConfigProvider, Layout } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 
 
 
 import { usePathname } from 'next/navigation';
 import AppSide, { AppSideMenu } from '@/components/AppSideMenu';
+import { StoreProvider } from '@/store/StorePrvider';
+import themeConfig from '@/themeConfig';
 
 function IsRhPage() {
   const pathname = usePathname();
@@ -45,31 +47,35 @@ export default function RootLayout({
 
 
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <AntdRegistry>
-          <Layout  style={{ minHeight: '100vh' }}>
-            <AppHeader />
-            {IsRhPage() ? (
-              <Layout hasSider>
-                <AppSide />
-                <Layout style={{marginLeft:"200px", marginTop:"100px"}}>
+    <StoreProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <ConfigProvider theme={themeConfig}>
+
+            <AntdRegistry>
+              <Layout style={{ minHeight: '100vh' }}>
+                <AppHeader />
+                {IsRhPage() ? (
+                  <Layout hasSider>
+                    <AppSide />
+                    <Layout style={{ marginLeft: "200px", marginTop: "100px" }}>
+                      <Content style={{ padding: '16px', minHeight: 'calc(100vh - 64px)' }}>
+                        {children}
+                      </Content>
+                    </Layout>
+                  </Layout>
+                ) : (
                   <Content style={{ padding: '16px', minHeight: 'calc(100vh - 64px)' }}>
                     {children}
                   </Content>
-                  </Layout>
-                </Layout>
-                ) : (
-                <Content style={{ padding: '16px', minHeight: 'calc(100vh - 64px)' }}>
-                  {children}
-                </Content>
-            )}
+                )}
               </Layout>
-        </AntdRegistry>
-
-      </body>
-    </html>
+            </AntdRegistry>
+          </ConfigProvider>
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

@@ -1,100 +1,155 @@
-'use client'
-import ListCandidate, { dataa } from "@/components/ListCandidate";
+'use client';
+
+import React, { useEffect, useState } from "react";
 import { CheckOutlined, ClockCircleOutlined, CloseOutlined, CrownOutlined, UserOutlined } from "@ant-design/icons";
-import { Avatar, Card, Col, Flex, Row, Typography } from "antd";
+import { Avatar, Card, Col, Row, Typography, message } from "antd";
+import ListCandidate from "@/components/ListCandidate";
+import { useRouter } from "next/navigation";
+import { jwtDecode } from "jwt-decode";
+
+
 const { Title } = Typography;
 
-export default function page() {
-    const data = dataa();
-    const nbNv = data.filter(c => c.status === "Nouveau").length;
-    const nbAc = data.filter(c => c.status === "Accepté").length;
-    const nbAt = data.filter(c => c.status === "En Attente").length;
-    const nbRe = data.filter(c => c.status === "Refusé").length;
+export interface Candidate {
+  id: number;
+  lastname: string;
+  name: string;
+  email: string;
+  tel: string;
+  poste: string;
+  message: string;
+  cv: string;
+  status: string;
+}
 
-    return (
-        <Row gutter={10}>
-            <Col span={19}>
-                <Row style={{ marginBottom: "50px" }}>
-                    <Flex wrap gap={25}>
-                        <Card style={{ width: "250px" }}>
-                            <Flex align="center" gap={16}>
-                                <div className="text-2xl flex items-center justify-center rounded-md h-12 w-12 bg-blue-200">
-                                    <CrownOutlined />
-                                </div>
-                                <div>
-                                    <Title level={4} style={{ marginBottom: 0 }} >
-                                        {nbNv}
-                                    </Title>
-                                    <Typography>
-                                        Nouveaux
-                                    </Typography>
-                                </div>
-                            </Flex>
-                        </Card>
-                        <Card style={{ width: "250px" }}>
-                            <Flex align="center" gap={16}>
-                                <div className="text-2xl flex items-center justify-center rounded-md h-12 w-12 bg-green-200">
-                                    <CheckOutlined />
-                                </div>
-                                <div>
-                                    <Title level={4} style={{ marginBottom: 0 }} >
-                                        {nbAc}
-                                    </Title>
-                                    <Typography>
-                                        Acceptés
-                                    </Typography>
-                                </div>
-                            </Flex>
-                        </Card>
-                        <Card style={{ width: "250px" }}>
-                            <Flex align="center" gap={16}>
-                                <div className="text-2xl flex items-center justify-center rounded-md h-12 w-12 bg-orange-200">
-                                    <ClockCircleOutlined />
-                                </div>
-                                <div>
-                                    <Title level={4} style={{ marginBottom: 0 }} >
-                                        {nbAt}
-                                    </Title>
-                                    <Typography>
-                                        En Attentes
-                                    </Typography>
-                                </div>
-                            </Flex>
-                        </Card>
-                        <Card style={{ width: "250px" }}>
-                            <Flex align="center" gap={16}>
-                                <div className="text-2xl flex items-center justify-center rounded-md h-12 w-12 bg-red-200">
-                                    <CloseOutlined />
-                                </div>
-                                <div>
-                                    <Title level={4} style={{ marginBottom: 0 }} >
-                                        {nbRe}
-                                    </Title>
-                                    <Typography>
-                                        Refusés
-                                    </Typography>
-                                </div>
-                            </Flex>
-                        </Card>
-                    </Flex>
-                </Row>
-                <ListCandidate />
-            </Col>
+interface SessionData {
+  id: string;
+  firstname: string;
+  lastname: string;
+}
 
-            <Col span={5}>
-                <Card>
-                    <Flex style={{flexDirection:"column"}}>
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "200px", width: "100%" }}>
-                            <Avatar size={100} icon={<UserOutlined />} />
-                        </div>
 
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", fontSize:20}}>
-                                Jhon Smith
-                        </div>
+export default function Page() {
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [session, setSession] = useState<SessionData | null>(null);
+  const router = useRouter();
 
-                    </Flex>
-                </Card>
-            </Col>
+  useEffect(() => {
+    // Lire le cookie JWT
+    const cookie = document.cookie.split('; ').find(row => row.startsWith('recruteur_token='));
+    if (!cookie) {
+      router.push('/signup');
+      return;
+    }
+
+    try {
+      const token = cookie.split('=')[1];
+      const decoded = jwtDecode<any>(token);
+      setSession(decoded);
+      fetchCandidates(); // Charger les données après vérification du token
+    } catch (err) {
+      console.error("Token invalide :", err);
+      router.push('/signup');
+    }
+  }, []);
+
+  const fetchCandidates = async () => {
+    try {
+      const response = await fetch("/api/candidates");
+      if (!response.ok) throw new Error("Impossible de récupérer les candidats");
+      const data = await response.json();
+      setCandidates(data);
+    } catch (err: any) {
+      message.error(err.message || "Erreur lors du chargement");
+    }
+  };
+
+  const nbNv = candidates.filter(c => c.status === "Nouveau").length;
+  const nbAc = candidates.filter(c => c.status === "Accepté").length;
+  const nbAt = candidates.filter(c => c.status === "En attente").length;
+  const nbRe = candidates.filter(c => c.status === "Refusé").length;
+
+  return (
+    <Row gutter={10}>
+      <Col span={19}>
+        <Row style={{ marginBottom: "50px" }}>
+          <div style={{ display: 'flex', gap: 25,  flexWrap:"wrap"}}>
+            <Card style={{ width: "250px" }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div className="text-2xl flex items-center justify-center rounded-md h-12 w-12 bg-blue-200">
+                  <CrownOutlined />
+                </div>
+                <div>
+                  <Title level={4} style={{ marginBottom: 0 }}>
+                    {nbNv}
+                  </Title>
+                  <Typography>
+                    Nouveaux
+                  </Typography>
+                </div>
+              </div>
+            </Card>
+            <Card style={{ width: "250px" }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div className="text-2xl flex items-center justify-center rounded-md h-12 w-12 bg-green-200">
+                  <CheckOutlined />
+                </div>
+                <div>
+                  <Title level={4} style={{ marginBottom: 0 }}>
+                    {nbAc}
+                  </Title>
+                  <Typography>
+                    Acceptés
+                  </Typography>
+                </div>
+              </div>
+            </Card>
+            <Card style={{ width: "250px" }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div className="text-2xl flex items-center justify-center rounded-md h-12 w-12 bg-orange-200">
+                  <ClockCircleOutlined />
+                </div>
+                <div>
+                  <Title level={4} style={{ marginBottom: 0 }}>
+                    {nbAt}
+                  </Title>
+                  <Typography>
+                    En Attentes
+                  </Typography>
+                </div>
+              </div>
+            </Card>
+            <Card style={{ width: "250px" }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div className="text-2xl flex items-center justify-center rounded-md h-12 w-12 bg-red-200">
+                  <CloseOutlined />
+                </div>
+                <div>
+                  <Title level={4} style={{ marginBottom: 0 }}>
+                    {nbRe}
+                  </Title>
+                  <Typography>
+                    Refusés
+                  </Typography>
+                </div>
+              </div>
+            </Card>
+          </div>
         </Row>
-    );
-} 
+        <ListCandidate />
+      </Col>
+      <Col span={5}>
+        <Card>
+          <div style={{ flexDirection: "column", display: "flex" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "200px", width: "100%" }}>
+              <Avatar size={100} icon={<UserOutlined />} />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", fontSize: 20  }}>
+              {session?.firstname} {session?.lastname}
+            </div>
+          </div>
+        </Card>
+      </Col>
+    </Row>
+  );
+}
