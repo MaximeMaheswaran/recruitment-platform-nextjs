@@ -3,6 +3,7 @@
 import React from 'react';
 import { Button, Form, Input, Radio, Upload, message, Card, Layout } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import type { RcFile } from 'antd/es/upload/interface';
 
 const beforeUpload = (file: RcFile) => {
@@ -21,6 +22,7 @@ const normFile = (e: any) => {
 };
 
 export default function FormCandidate() {
+  const { t } = useTranslation();
   const [form] = Form.useForm();
 
   const handleSubmit = async (values: any) => {
@@ -39,7 +41,7 @@ export default function FormCandidate() {
         });
 
         if (!uploadResponse.ok) {
-          message.error('Échec de l’upload du fichier.');
+          message.error(t('form.uploadError'));
           return;
         }
 
@@ -49,7 +51,7 @@ export default function FormCandidate() {
 
       // Si le fichier n'a pas été uploadé, empêcher la soumission
       if (!uploadedFileName && fileObj) {
-        message.error('Le fichier CV n\'a pas été téléchargé avec succès.');
+        message.error(t('form.uploadError'));
         return;
       }
 
@@ -89,52 +91,52 @@ export default function FormCandidate() {
         <Form layout="vertical" form={form} onFinish={handleSubmit}>
           {/* Form Fields */}
           <Form.Item
-            label="Nom"
+            label={t('form.name')}
             name="lastname"
-            rules={[{ required: true, message: 'Veuillez entrer votre nom' }]}
+            rules={[{ required: true, message: t('form.name') }]}
           >
-            <Input placeholder="Entrez votre nom" />
+            <Input placeholder={t('form.name')} />
           </Form.Item>
           <Form.Item
-            label="Prénom"
+            label={t('form.firstName')}
             name="firstname"
-            rules={[{ required: true, message: 'Veuillez entrer votre prénom' }]}
+            rules={[{ required: true, message: t('form.firstName') }]}
           >
-            <Input placeholder="Entrez votre prénom" />
+            <Input placeholder={t('form.firstName')} />
           </Form.Item>
           <Form.Item
-            label="Email"
+            label={t('form.email')}
             name="email"
             rules={[
-              { required: true, message: 'Veuillez entrer votre email' },
-              { type: 'email', message: 'Email invalide' },
+              { required: true, message: t('form.email') },
+              { type: 'email', message: t('form.email') },
             ]}
           >
             <Input placeholder="exemple@domain.com" />
           </Form.Item>
           <Form.Item
-            label="Numéro de téléphone"
+            label={t('form.phone')}
             name="phone"
-            rules={[{ required: true, message: 'Veuillez entrer votre numéro' }]}
+            rules={[{ required: true, message: t('form.phone') }]}
           >
             <Input placeholder="0601020304" />
           </Form.Item>
           <Form.Item
-            label="Poste à pourvoir"
+            label={t('form.position')}
             name="position"
-            rules={[{ required: true, message: 'Veuillez choisir un poste' }]}
+            rules={[{ required: true, message: t('form.position') }]}
           >
             <Radio.Group>
-              <Radio value="Stage">Stage</Radio>
-              <Radio value="Alternance">Alternance</Radio>
+              <Radio value={t('form.internship')}>{t('form.internship')}</Radio>
+              <Radio value={t('form.apprenticeship')}>{t('form.apprenticeship')}</Radio>
             </Radio.Group>
           </Form.Item>
           <Form.Item
-            label="CV (PDF uniquement)"
+            label={t('form.cv')}
             name="cv"
             valuePropName="fileList"
             getValueFromEvent={normFile}
-            rules={[{ required: true, message: 'Veuillez envoyer un fichier PDF' }]}
+            rules={[{ required: true, message: t('form.cv') }]}
           >
             <Upload
               name="cv"
@@ -143,22 +145,22 @@ export default function FormCandidate() {
               listType="text"
               maxCount={1}
             >
-              <Button icon={<PlusOutlined />}>Uploader votre CV (PDF)</Button>
+              <Button icon={<PlusOutlined />}>{t('form.cv')}</Button>
             </Upload>
           </Form.Item>
           <Form.Item
-            label="Message pour le recruteur"
+            label={t('form.message')}
             name="experienceDescription"
-            rules={[{ required: true, message: 'Veuillez ajouter un message' }]}
+            rules={[{ required: true, message: t('form.message') }]}
           >
             <Input.TextArea
-              placeholder="Décrivez votre motivation, parcours, etc."
+              placeholder={t('form.message')}
               rows={4}
             />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Soumettre
+              {t('form.submit')}
             </Button>
           </Form.Item>
         </Form>

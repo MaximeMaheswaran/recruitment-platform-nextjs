@@ -1,0 +1,94 @@
+{
+  "app": {
+    "title": "Plateforme de Recrutement"
+  },
+  "header": {
+    "analytics": "Analytics",
+    "login": "Se connecter",
+    "logout": "Déconnexion"
+  },
+  "sidebar": {
+    "home": "Accueil",
+    "listCandidates": "Liste des candidats",
+    "newCandidates": "Nouveaux candidats",
+    "acceptedCandidates": "Candidats acceptés",
+    "pendingCandidates": "Candidats en attente",
+    "rejectedCandidates": "Candidats refusés"
+  },
+  "form": {
+    "name": "Nom",
+    "firstName": "Prénom",
+    "email": "Email",
+    "phone": "Numéro de téléphone",
+    "position": "Poste à pourvoir",
+    "cv": "CV (PDF uniquement)",
+    "message": "Message pour le recruteur",
+    "submit": "Soumettre",
+    "cvError": "Seuls les fichiers PDF sont autorisés.",
+    "uploadError": "Le fichier CV n'a pas été téléchargé avec succès.",
+    "internship": "Stage",
+    "apprenticeship": "Alternance",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "login": "Connexion",
+    "status": "Statut",
+    "actions": "Actions"
+  },
+  "buttons": {
+    "cancel": "Annuler",
+    "register": "S'inscrire",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "accept": "Accepter",
+    "pending": "En attente",
+    "reject": "Refuser",
+    "more": "Plus",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "messages": {
+    "welcome": "Bienvenue sur la plateforme",
+    "loginSuccess": "Connexion réussie",
+    "logoutSuccess": "Déconnexion réussie",
+    "formSuccess": "Formulaire soumis avec succès",
+    "formError": "Une erreur est survenue, veuillez réessayer",
+    "requiredField": "Ce champ est requis",
+    "invalidEmail": "Adresse email invalide",
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "loadError": "Erreur lors du chargement",
+    "deleteError": "Erreur de suppression",
+    "candidateDeleted": "Candidat supprimé",
+    "unknownError": "Erreur inconnue",
+    "statusUpdated": "Statut mis à jour à {{status}}",
+    "updateError": "Erreur lors de la mise à jour",
+    "candidateNotFound": "Candidat non trouvé",
+    "candidateInfo": "Informations du candidat",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce candidat?",
+    "fetchError": "Impossible de récupérer les candidats.",
+    "candidateDeleteError": "Impossible de supprimer le candidat.",
+    "deleteSuccess": "Candidat supprimé avec succès."
+  },
+  "home": {
+    "new": "Nouveaux",
+    "accepted": "Acceptés",
+    "pending": "En Attentes",
+    "rejected": "Refusés",
+    "error_loading": "Erreur lors du chargement",
+    "unable_fetch_candidates": "Impossible de récupérer les candidats",
+    "new_candidates": "Nouveaux",
+    "accepted_candidates": "Acceptés",
+    "pending_candidates": "En Attentes",
+    "rejected_candidates": "Refusés"
+  },
+
+  "new_candidates": "Nouveaux",
+  "accepted_candidates": "Acceptés",
+  "pending_candidates": "En Attentes",
+  "rejected_candidates": "Refusés",
+  "loading_error": "Erreur lors du chargement",
+  "unable_to_fetch_candidates": "Impossible de récupérer les candidats"
+}

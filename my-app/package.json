@@ -18,10 +18,13 @@
     "antd": "^5.24.6",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
+    "i18next": "^24.2.3",
     "jsonwebtoken": "^9.0.2",
     "next": "15.2.5",
+    "next-i18next": "^15.4.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-i18next": "^15.4.1",
     "react-redux": "^9.2.0"
   },
   "devDependencies": {

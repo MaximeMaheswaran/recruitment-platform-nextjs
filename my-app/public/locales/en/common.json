@@ -1,0 +1,93 @@
+{
+  "app": {
+    "title": "Recruitment Platform"
+  },
+  "header": {
+    "analytics": "Analytics",
+    "login": "Log In",
+    "logout": "Log Out"
+  },
+  "sidebar": {
+    "home": "Home",
+    "listCandidates": "List of Candidates",
+    "newCandidates": "New Candidates",
+    "acceptedCandidates": "Accepted Candidates",
+    "pendingCandidates": "Pending Candidates",
+    "rejectedCandidates": "Rejected Candidates"
+  },
+  "form": {
+    "name": "Last Name",
+    "firstName": "First Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "position": "Position",
+    "cv": "Resume (PDF only)",
+    "message": "Message for the recruiter",
+    "submit": "Submit",
+    "cvError": "Only PDF files are allowed.",
+    "uploadError": "The resume file was not uploaded successfully.",
+    "internship": "Internship",
+    "apprenticeship": "Apprenticeship",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "buttons": {
+    "cancel": "Cancel",
+    "register": "Register",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "accept": "Accept",
+    "pending": "Pending",
+    "reject": "Reject",
+    "more": "More",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "messages": {
+    "welcome": "Welcome to the platform",
+    "loginSuccess": "Login successful",
+    "logoutSuccess": "Logout successful",
+    "formSuccess": "Form submitted successfully",
+    "formError": "An error occurred, please try again",
+    "requiredField": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "passwordMismatch": "Passwords do not match",
+    "loadError": "Error while loading",
+    "deleteError": "Error while deleting",
+    "candidateDeleted": "Candidate deleted",
+    "unknownError": "Unknown error",
+    "statusUpdated": "Status updated to {{status}}",
+    "updateError": "Error while updating",
+    "candidateNotFound": "Candidate not found",
+    "candidateInfo": "Candidate Information",
+    "confirmDelete": "Are you sure you want to delete this candidate?",
+    "fetchError": "Unable to fetch candidates.",
+    "candidateDeleteError": "Unable to delete the candidate.",
+    "deleteSuccess": "Candidate deleted successfully."
+  },
+  "home": {
+    "new": "New",
+    "accepted": "Accepted",
+    "pending": "Pending",
+    "rejected": "Rejected",
+    "error_loading": "Error while loading",
+    "unable_fetch_candidates": "Unable to fetch candidates",
+    "new_candidates": "New",
+    "accepted_candidates": "Accepted",
+    "pending_candidates": "Pending",
+    "rejected_candidates": "Rejected"
+  },
+  "new_candidates": "New",
+  "accepted_candidates": "Accepted",
+  "pending_candidates": "Pending",
+  "rejected_candidates": "Rejected",
+  "loading_error": "Error while loading",
+  "unable_to_fetch_candidates": "Unable to fetch candidates"
+}

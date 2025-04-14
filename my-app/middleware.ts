@@ -12,5 +12,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/rh/:path*'], // Protège toutes les routes sous /rh
+  matcher: ['/rh/:path*', '/rh/acceptedCandidate', '/rh/infoCandidate', '/rh/listCandidate', '/rh/newCandidate', '/rh/pendingCandidate', '/rh/rejectedCandidate',], // Protège toutes les routes sous /rh
 };

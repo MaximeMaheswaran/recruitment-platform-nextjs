@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { CheckOutlined, ClockCircleOutlined, CloseOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Card, Button, Form, Input, Tag, Radio, Spin, Flex, message } from "antd";
 import { useParams, useRouter } from "next/navigation";
 import { useCandidates } from "@/components/action/UseCanditates";
+import { useTranslation } from "react-i18next";  // Importer le hook useTranslation
 
 export default function InfoCandidate() {
   const { id } = useParams();
@@ -13,6 +14,7 @@ export default function InfoCandidate() {
   const { candidates, updateCandidateStatusLocally } = useCandidates();
   const [isLoading, setIsLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
+  const { t } = useTranslation();  // Utiliser le hook pour la traduction
 
   // Trouve l’index du candidat à partir de l’ID dans l’URL
   useEffect(() => {
@@ -45,13 +47,13 @@ export default function InfoCandidate() {
 
       if (response.ok) {
         updateCandidateStatusLocally(candidate.id, status);
-        message.success(`Statut mis à jour à "${status}"`);
+        message.success(t('messages.statusUpdated', { status }));  // Traduction du message
       } else {
-        message.error('Erreur lors de la mise à jour');
+        message.error(t('messages.updateError'));  // Traduction du message d'erreur
       }
 
     } catch (error) {
-      message.error('Erreur lors de la mise à jour du statut');
+      message.error(t('messages.updateError'));
     } finally {
       setIsLoading(false);
     }
@@ -83,7 +85,7 @@ export default function InfoCandidate() {
   };
 
   if (currentIndex === -1 || !candidate) {
-    return <p style={{ textAlign: "center" }}>Candidat non trouvé</p>;
+    return <p style={{ textAlign: "center" }}>{t('messages.candidateNotFound')}</p>;  // Traduction du message
   }
 
   return (
@@ -103,30 +105,30 @@ export default function InfoCandidate() {
         <Card
           title={
             <span>
-              Informations du candidat <Tag color={getStatusColor(candidate.status)}>{candidate.status}</Tag>
+              {t('messages.candidateInfo')} <Tag color={getStatusColor(candidate.status)}>{candidate.status}</Tag>
             </span>
           }
           style={{ width: "49%", minWidth: "300px" }}
         >
           <Form layout="vertical" form={form}>
-            <Form.Item label="Nom" name="lastname"><Input disabled /></Form.Item>
-            <Form.Item label="Prénom" name="name"><Input disabled /></Form.Item>
-            <Form.Item label="Email" name="email"><Input disabled /></Form.Item>
-            <Form.Item label="Téléphone" name="tel"><Input disabled /></Form.Item>
-            <Form.Item label="Poste à pourvoir" name="poste">
+            <Form.Item label={t("form.name")} name="lastname"><Input disabled /></Form.Item>
+            <Form.Item label={t("form.firstname")} name="name"><Input disabled /></Form.Item>
+            <Form.Item label={t("form.email")} name="email"><Input disabled /></Form.Item>
+            <Form.Item label={t("form.phone")} name="tel"><Input disabled /></Form.Item>
+            <Form.Item label={t("form.position")} name="poste">
               <Radio.Group disabled>
-                <Radio value="Stage">Stage</Radio>
-                <Radio value="Alternance">Alternance</Radio>
+                <Radio value="Stage">{t("form.internship")}</Radio>
+                <Radio value="Alternance">{t("form.apprenticeship")}</Radio>
               </Radio.Group>
             </Form.Item>
-            <Form.Item label="Message / Expérience" name="message">
+            <Form.Item label={t("form.message")} name="message">
               <Input.TextArea disabled rows={4} />
             </Form.Item>
 
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Button onClick={() => handleStatusChange('Accepter')} type="primary">Accepter</Button>
-              <Button onClick={() => handleStatusChange('En attente')}>En attente</Button>
-              <Button onClick={() => handleStatusChange('Refuser')} danger>Refuser</Button>
+              <Button onClick={() => handleStatusChange('Accepter')} type="primary">{t("buttons.accept")}</Button>
+              <Button onClick={() => handleStatusChange('En attente')}>{t("buttons.pending")}</Button>
+              <Button onClick={() => handleStatusChange('Refuser')} danger>{t("buttons.reject")}</Button>
             </div>
           </Form>
         </Card>
@@ -143,10 +145,10 @@ export default function InfoCandidate() {
 
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
         <Button icon={<LeftOutlined />} onClick={handlePrev} disabled={currentIndex === 0}>
-          Précédent
+          {t("buttons.previous")}
         </Button>
         <Button icon={<RightOutlined />} onClick={handleNext} disabled={currentIndex === candidates.length - 1} style={{ marginLeft: '20px' }}>
-          Suivant
+          {t("buttons.next")}
         </Button>
       </div>
     </>

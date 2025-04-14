@@ -1,12 +1,14 @@
-import type { ThemeConfig } from 'antd'
+import { theme } from 'antd';
+import type { ThemeConfig } from 'antd';
 
 const themeConfig: ThemeConfig = {
   token: {
     colorPrimary: '#1677ff', // bleu principal
     colorBgContainer: '#f9f9f9',
     fontSize: 16,
-    borderRadius: 8,
+    borderRadius: 16,
     padding: 12,
+    colorLink: "#529eef",
   },
   components: {
     Button: {
@@ -16,6 +18,6 @@ const themeConfig: ThemeConfig = {
       colorPrimary: '#1DA57A',
     },
   },
-}
+};
 
-export default themeConfig
+export default themeConfig;

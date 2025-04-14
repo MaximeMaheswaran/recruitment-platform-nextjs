@@ -6,7 +6,7 @@ import { Avatar, Card, Col, Row, Typography, message } from "antd";
 import ListCandidate from "@/components/ListCandidate";
 import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
-
+import { useTranslation } from 'react-i18next';  // Ajout de l'importation pour la traduction
 
 const { Title } = Typography;
 
@@ -28,11 +28,11 @@ interface SessionData {
   lastname: string;
 }
 
-
 export default function Page() {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [session, setSession] = useState<SessionData | null>(null);
   const router = useRouter();
+  const { t } = useTranslation();  // Initialisation de la traduction
 
   useEffect(() => {
     // Lire le cookie JWT
@@ -56,24 +56,24 @@ export default function Page() {
   const fetchCandidates = async () => {
     try {
       const response = await fetch("/api/candidates");
-      if (!response.ok) throw new Error("Impossible de récupérer les candidats");
+      if (!response.ok) throw new Error(t('unable_to_fetch_candidates')); // Utilisation de la traduction
       const data = await response.json();
       setCandidates(data);
     } catch (err: any) {
-      message.error(err.message || "Erreur lors du chargement");
+      message.error(err.message || t('loading_error')); // Utilisation de la traduction
     }
   };
 
   const nbNv = candidates.filter(c => c.status === "Nouveau").length;
-  const nbAc = candidates.filter(c => c.status === "Accepté").length;
+  const nbAc = candidates.filter(c => c.status === "Accepter").length;
   const nbAt = candidates.filter(c => c.status === "En attente").length;
-  const nbRe = candidates.filter(c => c.status === "Refusé").length;
+  const nbRe = candidates.filter(c => c.status === "Refuser").length;
 
   return (
     <Row gutter={10}>
       <Col span={19}>
         <Row style={{ marginBottom: "50px" }}>
-          <div style={{ display: 'flex', gap: 25,  flexWrap:"wrap"}}>
+          <div style={{ display: 'flex', gap: 25, flexWrap: "wrap" }}>
             <Card style={{ width: "250px" }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                 <div className="text-2xl flex items-center justify-center rounded-md h-12 w-12 bg-blue-200">
@@ -84,7 +84,7 @@ export default function Page() {
                     {nbNv}
                   </Title>
                   <Typography>
-                    Nouveaux
+                    {t('new_candidates')}  {/* Utilisation de la traduction */}
                   </Typography>
                 </div>
               </div>
@@ -99,7 +99,7 @@ export default function Page() {
                     {nbAc}
                   </Title>
                   <Typography>
-                    Acceptés
+                    {t('accepted_candidates')}  {/* Utilisation de la traduction */}
                   </Typography>
                 </div>
               </div>
@@ -114,7 +114,7 @@ export default function Page() {
                     {nbAt}
                   </Title>
                   <Typography>
-                    En Attentes
+                    {t('pending_candidates')}  {/* Utilisation de la traduction */}
                   </Typography>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export default function Page() {
                     {nbRe}
                   </Title>
                   <Typography>
-                    Refusés
+                    {t('rejected_candidates')}  {/* Utilisation de la traduction */}
                   </Typography>
                 </div>
               </div>
@@ -144,7 +144,7 @@ export default function Page() {
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "200px", width: "100%" }}>
               <Avatar size={100} icon={<UserOutlined />} />
             </div>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", fontSize: 20  }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", fontSize: 20 }}>
               {session?.firstname} {session?.lastname}
             </div>
           </div>

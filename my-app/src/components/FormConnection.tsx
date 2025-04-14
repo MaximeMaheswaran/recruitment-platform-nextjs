@@ -4,12 +4,17 @@ import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import useIsMounted from '../components/action/UseMounted';
+import { useTranslation } from 'react-i18next';
 
 export default function FormConnection() {
+
+
     type FieldType = {
         username?: string;
         password?: string;
     };
+
+    const { t } = useTranslation();
 
     const isMounted = useIsMounted();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -62,7 +67,7 @@ export default function FormConnection() {
                 onFinishFailed={onFinishFailed}
             >
                 <Form.Item<FieldType>
-                    label="Username"
+                    label={t("form.username")}
                     name="username"
                     validateStatus={errorMessage ? 'error' : ''}
                     rules={[{ required: true, message: 'Please input your username!' }]}
@@ -71,7 +76,7 @@ export default function FormConnection() {
                 </Form.Item>
 
                 <Form.Item<FieldType>
-                    label="Password"
+                    label={t("form.password")}
                     name="password"
                     validateStatus={errorMessage ? 'error' : ''}
                     help={errorMessage || ''}
@@ -82,7 +87,7 @@ export default function FormConnection() {
 
                 <Form.Item label={null}>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        {t("form.submit")}
                     </Button>
                 </Form.Item>
             </Form>

@@ -3,8 +3,10 @@
 import { Table, Spin, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { columns } from './ListCandidate';
+import { useTranslation } from 'react-i18next';
 
 export default function RejectedCandidate() {
+  const { t } = useTranslation();
   const [candidates, setCandidates] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -43,5 +45,5 @@ export default function RejectedCandidate() {
   if (loading) return <Spin style={{ display: 'block', margin: '20px auto' }} />;
   if (error) return <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>;
 
-  return <Table columns={columns(deleteCandidate)} dataSource={filteredData} rowKey="id" />;
+  return <Table columns={columns(deleteCandidate, t)} dataSource={filteredData} rowKey="id" />;
 }
