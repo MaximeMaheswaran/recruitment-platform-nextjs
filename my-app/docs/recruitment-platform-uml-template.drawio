@@ -1,0 +1,134 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.2.12" pages="3">
+  <diagram name="Architecture" id="architecture">
+    <mxGraphModel dx="3797" dy="1900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frontend" value="Frontend (Next.js)" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="60" y="60" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="redux" value="Redux (State)" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="280" y="60" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="api" value="API Routes (Next.js)" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="170" y="160" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="prisma" value="Prisma ORM" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="170" y="260" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="Base de Données (SQLite)" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="170" y="360" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-3" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;Architecture de l&#39;application&amp;nbsp;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=light-dark(transparent,#FFFFFF);" vertex="1" parent="1">
+          <mxGeometry x="-160" y="10" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-4" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;Flux de données&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=light-dark(transparent,#FFFFFF);" vertex="1" parent="1">
+          <mxGeometry x="-160" y="490" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-5" value="Formulaire Candidat" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="555" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-6" value="Envoie via API Route" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="280" y="555" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-7" value="Stockage Prisma / BDD" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="500" y="555" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-8" value="/candidate-form" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="60" y="760" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-9" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;Page principales&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=light-dark(transparent,#FFFFFF);" vertex="1" parent="1">
+          <mxGeometry x="-160" y="690" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-10" value="/candidates" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="280" y="760" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-11" value="/candidate/[ID]" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="500" y="760" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-12" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;Arborescence du site&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=light-dark(transparent,#FFFFFF);" vertex="1" parent="1">
+          <mxGeometry x="-160" y="930" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-13" value="/" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="980" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-14" value="/listCandidate" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1180" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-15" value="/rh" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1180" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-16" value="/newCandidate" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1280" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-17" value="/signup" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1080" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-18" value="/acceptedCandidate" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1380" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-19" value="/rejectedCandidate" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1600" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-20" value="/pendingCandidate" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1490" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-21" value="/infoCandidate/[id]" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1700" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-22" value="/api" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1810" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-23" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;Arborescence du&amp;nbsp;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=light-dark(transparent,#FFFFFF);" vertex="1" parent="1">
+          <mxGeometry x="-160" y="1770" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-24" value="/candidates" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1920" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-25" value="/auth" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1810" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-26" value="/logout" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="320" y="2030" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AOe2z-xr9q6-MD1UGMQ4-27" value="/upload" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="320" y="2140" width="180" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Flux de données" id="dataflow">
+    <mxGraphModel dx="1234" dy="567" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="form" value="Formulaire Candidat" style="rounded=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="send" value="Envoi via API" style="rounded=1;fillColor=#fff2cc;" vertex="1" parent="1">
+          <mxGeometry x="280" y="60" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dbflow" value="Stockage Prisma / DB" style="rounded=1;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="500" y="60" width="180" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Pages" id="pages">
+    <mxGraphModel dx="1234" dy="567" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="formPage" value="/candidate-form" style="rounded=1;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="listPage" value="/recruiters" style="rounded=1;fillColor=#fff2cc;" vertex="1" parent="1">
+          <mxGeometry x="280" y="60" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="detailPage" value="/recruiters/[id]" style="rounded=1;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="500" y="60" width="180" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

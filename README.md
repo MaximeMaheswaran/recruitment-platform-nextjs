@@ -95,6 +95,17 @@ next-i18next (i18n)
 *****************************************************************************
 
 
+## 📘 Documentation
+
+Les diagrammes UML sont disponibles dans le dossier `/docs` :
+- Architecture de l’app
+- Flux de données
+- Pages principales
+
+
+****************************************************************************
+
+
 ✏️ Auteur
 
 Maxime Maheswaran
