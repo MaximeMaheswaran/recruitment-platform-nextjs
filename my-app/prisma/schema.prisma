@@ -1,37 +1,40 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Ceci est le fichier de schéma Prisma
+// Documentation officielle : https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Suggestions pour améliorer les performances (facultatif)
+// Prisma Accelerate : https://pris.ly/cli/accelerate-init
 
+// Générateur du client Prisma (le code TypeScript qui permet d'interagir avec la BDD)
 generator client {
-  provider = "prisma-client-js"
-  output   = "./generated"
+  provider = "prisma-client-js"  // Utilise le client JavaScript de Prisma
+  output   = "./generated"       // Chemin de sortie pour le client généré
 }
 
-
+// Source de données (la base de données utilisée)
 datasource db { 
-  provider = "sqlite" 
-  url = env("DATABASE_URL") 
-  }
+  provider = "sqlite"            // Utilise SQLite comme base de données
+  url = env("DATABASE_URL")      // L'URL de connexion est récupérée depuis une variable d'environnement
+}
 
+// Modèle "Candidate" représentant un candidat dans la base de données
 model Candidate { 
-  id Int @id @default(autoincrement()) 
-  name String 
-  lastname String 
-  email String @unique 
-  tel String 
-  poste String 
-  message String 
-  cv String? 
-  status String 
-  createdAt DateTime @default(now()) 
-  }
+  id Int @id @default(autoincrement())  // Clé primaire auto-incrémentée
+  name String                           // Prénom du candidat
+  lastname String                       // Nom de famille du candidat
+  email String @unique                  // Email du candidat, doit être unique
+  tel String                            // Numéro de téléphone
+  poste String                          // Poste visé ou demandé
+  message String                        // Message du candidat (motivation, etc.)
+  cv String?                            // Lien ou chemin vers le CV (champ optionnel)
+  status String                         // Statut de la candidature (ex : en cours, accepté, refusé)
+  createdAt DateTime @default(now())    // Date de création, avec valeur par défaut à la date actuelle
+}
 
+// Modèle "recruteur" représentant un recruteur dans la base de données
 model recruteur {
-  id Int @id @default(autoincrement())
-  name String
-  lastname String 
-  username String @unique
-  password String
+  id Int @id @default(autoincrement())  // Clé primaire auto-incrémentée
+  name String                           // Prénom du recruteur
+  lastname String                       // Nom de famille du recruteur
+  username String @unique               // Nom d'utilisateur, doit être unique
+  password String                       // Mot de passe (probablement hashé en pratique)
 }
