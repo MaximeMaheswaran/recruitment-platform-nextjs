@@ -28,13 +28,6 @@ npx prisma migrate dev --name init
 npx prisma generate
 
 
-
-Créer le dossier uploads/ dans public/ (Terminal):
-
-mkdir public/uploads
-
-
-
 Lancer le serveur (Terminal):
 npm run dev
 
